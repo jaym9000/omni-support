@@ -3,50 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omni App Support</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Omni - Mental Wellness Support</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: 'Inter', sans-serif;
+        }
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <h1>Omni App Support</h1>
-    </header>
-    <main>
-        <section id="faq">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <button class="faq-question">How do I reset my password?</button>
-                <div class="faq-answer">
-                    <p>To reset your password, go to the login screen, tap on 'Forgot Password', and follow the instructions sent to your registered email.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">How can I contact customer support?</button>
-                <div class="faq-answer">
-                    <p>You can reach our support team by filling out the contact form below or emailing us directly at support@omniapp.com.</p>
-                </div>
-            </div>
-            <!-- Add more FAQ items as needed -->
+<body class="text-gray-800">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Hero Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-blue-600 mb-4">Omni</h1>
+            <p class="text-xl text-gray-600 mb-6">Your AI therapist, anytime</p>
+            <a href="#contact" class="bg-blue-500 text-white px-6 py-3 rounded-full hover:bg-blue-600 transition">Get Support</a>
+        </header>
+
+        <!-- Disclaimer Section -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8 text-center">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-600">Important Note</h2>
+            <p class="text-gray-700">
+                Omni is an AI-powered support tool and is not a substitute for professional mental health care. 
+                If you are experiencing a mental health crisis, please contact a licensed therapist or call 
+                <a href="tel:988" class="text-blue-500">988 Suicide & Crisis Lifeline</a>.
+            </p>
         </section>
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <form id="contact-form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-                
-                <button type="submit">Send Message</button>
+
+        <!-- FAQ Section -->
+        <section x-data="{ 
+            faqs: [
+                {
+                    question: 'How does Omni work?',
+                    answer: 'Omni uses AI trained in Cognitive Behavioral Therapy (CBT) to provide personalized emotional support. You can customize your AI therapist\'s persona and engage in supportive conversations anytime.'
+                },
+                {
+                    question: 'Is my data private?',
+                    answer: 'We prioritize your privacy. All conversations are encrypted, anonymized, and never shared. We do not sell or use your personal data for any external purposes.'
+                },
+                {
+                    question: 'How much does Omni cost?',
+                    answer: 'Omni offers a free basic tier with limited features. Premium subscriptions provide full access to customization, advanced tracking, and unlimited conversations.'
+                },
+                {
+                    question: 'Is the AI therapist safe to use?',
+                    answer: 'Our AI is designed with strict ethical guidelines, trained by mental health professionals, and programmed to provide supportive, non-judgmental assistance.'
+                }
+            ]
+        }">
+            <h2 class="text-3xl font-bold text-center mb-8 text-blue-600">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <template x-for="(faq, index) in faqs" :key="index">
+                    <div class="faq-item bg-white rounded-lg shadow-md">
+                        <button 
+                            @click="faq.isOpen = !faq.isOpen" 
+                            class="w-full text-left p-4 font-semibold text-blue-600 hover:bg-blue-50 transition"
+                            :aria-expanded="faq.isOpen"
+                        >
+                            <div class="flex justify-between items-center">
+                                <span x-text="faq.question"></span>
+                                <svg 
+                                    x-show="!faq.isOpen" 
+                                    class="w-6 h-6" 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    viewBox="0 0 24 24" 
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <svg 
+                                    x-show="faq.isOpen" 
+                                    class="w-6 h-6" 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    viewBox="0 0 24 24" 
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                        </button>
+                        <div 
+                            x-show="faq.isOpen" 
+                            x-collapse 
+                            class="p-4 text-gray-700"
+                            x-text="faq.answer"
+                        ></div>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="mt-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-blue-600">Contact Us</h2>
+            <form 
+                id="supportForm" 
+                class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md"
+                onsubmit="submitForm(event)"
+            >
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 mb-2">Name</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        required 
+                        class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 mb-2">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required 
+                        class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                </div>
+                <div class="mb-6">
+                    <label for="message" class="block text-gray-700 mb-2">Message</label>
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        required 
+                        rows="4" 
+                        class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    ></textarea>
+                </div>
+                <button 
+                    type="submit" 
+                    class="w-full bg-blue-500 text-white py-3 rounded-full hover:bg-blue-600 transition"
+                >
+                    Send Message
+                </button>
             </form>
-            <p id="form-status"></p>
         </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Omni App. All rights reserved.</p>
-    </footer>
-    <script src="scripts.js"></script>
+
+        <!-- Footer -->
+        <footer class="text-center mt-12 text-gray-600">
+            <div class="mb-4">
+                <p>📧 Email: mahoro.jeanmarc@gmail.com</p>
+                <p>📞 Phone: +1 (506) 229-0445</p>
+            </div>
+            <div class="text-sm">
+                <a href="#" class="text-blue-500 mr-4">Privacy Policy</a>
+                <a href="#" class="text-blue-500">Terms of Service</a>
+            </div>
+            <p class="mt-4 text-xs">© 2024 Omni. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            event.target.reset();
+        }
+    </script>
 </body>
 </html>
