@@ -1,21 +1,16 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Omni – AI Therapy Support</title>
-  <!-- Tailwind CDN -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
-  <!-- Alpine.js for accordion + tab logic -->
+  <!-- TailwindCSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- Alpine.js (UI logic) -->
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-  <!-- Critical styles (the rest can live in style.css) -->
-  <style>
-      /* Gradient backdrop */
-      body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f0f9ff 0%,#fef9ff 100%);}  
-      .page-section{display:none;} 
-      .active-section{display:block;} 
-      .tab-button.active{background-color:#1e40af;} 
-  </style>
 </head>
 <body class="text-gray-800 antialiased">
   <div class="container mx-auto px-4 py-12 max-w-4xl">
@@ -87,8 +82,8 @@
 
         <h2>2. Legal Bases</h2>
         <ul>
-          <li><strong>Consent</strong> (GDPR Art 9) – explicit for health‑related data. ([eur-lex.europa.eu](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX%3A32016R0679&utm_source=chatgpt.com))</li>
-          <li><strong>Contract</strong> – provide subscription features. ([developer.apple.com](https://developer.apple.com/app-store/review/guidelines/?utm_source=chatgpt.com))</li>
+          <li><strong>Consent</strong> (GDPR Art 9) – explicit for health‑related data.</li>
+          <li><strong>Contract</strong> – provide subscription features.</li>
           <li><strong>Legal Obligation</strong> – respond to lawful requests.</li>
         </ul>
 
@@ -108,10 +103,10 @@
         </ol>
 
         <h2>5. Sharing &amp; Transfers</h2>
-        <p>We do <strong>not</strong> sell your data. We share it only with processors (OpenAI, AWS) bound by contract. Where data leaves Canada we ensure "comparable protection" under PIPEDA. ([priv.gc.ca](https://www.priv.gc.ca/en/privacy-topics/airports-and-borders/gl_dab_090127/?utm_source=chatgpt.com))</p>
+        <p>We do <strong>not</strong> sell your data. We share it only with processors (OpenAI, AWS) bound by contract. Where data leaves Canada we ensure "comparable protection" under PIPEDA.</p>
 
         <h2>6. Security</h2>
-        <p>Data is encrypted at rest and in transit per OWASP recommendations. ([cheatsheetseries.owasp.org](https://cheatsheetseries.owasp.org/cheatsheets/Mobile_Application_Security_Cheat_Sheet.html?utm_source=chatgpt.com))</p>
+        <p>Data is encrypted at rest and in transit per OWASP recommendations.</p>
 
         <h2>7. Your Rights</h2>
         <p>You may access, correct, delete or export your data via Settings or by emailing <a href="mailto:privacy@omniapp.ai">privacy@omniapp.ai</a>.</p>
@@ -120,13 +115,10 @@
         <p>We retain data while your account is active and for 30 days after deletion, unless longer retention is required.</p>
 
         <h2>9. Complaints &amp; Contact</h2>
-        <p>Contact: privacy@omniapp.ai • PO Box 123, Quispamsis NB E2E 4Z4, Canada. You may also complain to the Office of the Privacy Commissioner of Canada.</p>
+        <p>Contact: privacy@omniapp.ai • PO Box 123, Quispamsis NB E2E 4Z4, Canada.</p>
 
         <h2>10. Changes</h2>
         <p>We update this policy when necessary; material changes notified in‑app at least 14 days in advance.</p>
-
-        <hr>
-        <p class="text-xs">For additional legal terms, see Apple's Licensed Application EULA. ([apple.com](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/?utm_source=chatgpt.com))</p>
       </article>
     </section>
 
@@ -138,10 +130,7 @@
     </footer>
   </div>
 
-  <!-- Core JS (place rest in main.js) -->
-  <script>
-    function showSection(name){['support','privacy'].forEach(k=>{document.getElementById(`${k}-section`).classList.remove('active-section');document.getElementById(`${k}-tab`)?.classList.remove('active');});document.getElementById(`${name}-section`).classList.add('active-section');document.getElementById(`${name}-tab`)?.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
-    function submitForm(e){e.preventDefault();alert('Thanks! We\'ll reply soon.');e.target.reset();}
-  </script>
+  <!-- Core JS -->
+  <script src="main.js" defer></script>
 </body>
 </html>
