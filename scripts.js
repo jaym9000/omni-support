@@ -1,32 +1,21 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // FAQ accordion functionality
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    faqQuestions.forEach(function(question) {
-        question.addEventListener('click', function() {
-            const answer = this.nextElementSibling;
-            if (answer.style.display === 'block') {
-                answer.style.display = 'none';
-            } else {
-                // Close all answers
-                document.querySelectorAll('.faq-answer').forEach(function(item) {
-                    item.style.display = 'none';
-                });
-                answer.style.display = 'block';
-            }
-        });
-    });
+// main.js
+// Toggle between Support & Privacy sections
+function showSection(name) {
+  const sections = ['support', 'privacy'];
+  sections.forEach((key) => {
+    document.getElementById(`${key}-section`).classList.remove('active-section');
+    const tab = document.getElementById(`${key}-tab`);
+    if (tab) tab.classList.remove('active');
+  });
+  document.getElementById(`${name}-section`).classList.add('active-section');
+  const activeTab = document.getElementById(`${name}-tab`);
+  if (activeTab) activeTab.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-    // Contact form submission handling
-    const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        const formStatus = document.getElementById('form-status');
-        formStatus.textContent = 'Sending message...';
-
-        // Simulate form submission process
-        setTimeout(function() {
-            formStatus.textContent = 'Thank you for your message. We will get back to you shortly.';
-            contactForm.reset();
-        }, 2000);
-    });
-});
+// Simple contact form handler
+function submitForm(e) {
+  e.preventDefault();
+  alert('Thanks! We\'ll reply soon.');
+  e.target.reset();
+}
